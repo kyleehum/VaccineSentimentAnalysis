@@ -72,3 +72,11 @@ df['Score'] = df['Polarity'].apply(getTextAnalysis)
 labels = df.groupby('Score').count().index.values
 values = df.groupby('Score').size().values
 plt.bar(labels, values, color = ['red', 'blue', 'lime'])
+
+#calculates percentage of positive, negative, and neutral tweets
+positive = df[df['Score'] == 'Positive']
+print(str(positive.shape[0]/(df.shape[0])*100) + " % of positive tweets")
+positive = df[df['Score'] == 'Neutral']
+print(str(positive.shape[0]/(df.shape[0])*100) + " % of neutral tweets")
+positive = df[df['Score'] == 'Negative']
+print(str(positive.shape[0]/(df.shape[0])*100) + " % of negative tweets")
