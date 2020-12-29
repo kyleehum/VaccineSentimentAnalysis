@@ -80,3 +80,70 @@ positive = df[df['Score'] == 'Neutral']
 print(str(positive.shape[0]/(df.shape[0])*100) + " % of neutral tweets")
 positive = df[df['Score'] == 'Negative']
 print(str(positive.shape[0]/(df.shape[0])*100) + " % of negative tweets")
+
+df2 = pd.read_csv("vaccine_tweets1026.csv", usecols = [4])
+
+#applies the function to clean the tweets
+df2['text'] = df2['text'].apply(cleanUpTweet)
+
+
+#applies subjectivity and polarity to the tweets
+df2['Subjectivity'] = df2['text'].apply(getTextSubjectivity)
+df2['Polarity'] = df2['text'].apply(getTextPolarity)
+
+
+#creates another column called Score and applies the function to the dataframe
+df2['Score'] = df2['Polarity'].apply(getTextAnalysis)
+
+#visualizes the data through a bar chart
+labels = df2.groupby('Score').count().index.values
+values = df2.groupby('Score').size().values
+plt.bar(labels, values, color = ['red', 'blue', 'lime'])
+plt.title(label = "Vaccine Sentiment Analysis - 12/26/2020", 
+                  fontsize = '15')
+
+#calculates percentage of positive, negative, and neutral tweets
+positive = df2[df2['Score'] == 'Positive']
+print(str(positive.shape[0]/(df2.shape[0])*100) + " % of positive tweets")
+positive = df2[df2['Score'] == 'Neutral']
+print(str(positive.shape[0]/(df2.shape[0])*100) + " % of neutral tweets")
+positive = df2[df2['Score'] == 'Negative']
+print(str(positive.shape[0]/(df2.shape[0])*100) + " % of negative tweets")
+
+
+df3 = pd.read_csv("vaccine_tweets1028.csv", usecols = [4])
+
+#applies the function to clean the tweets
+df3['text'] = df3['text'].apply(cleanUpTweet)
+
+
+#applies subjectivity and polarity to the tweets
+df3['Subjectivity'] = df3['text'].apply(getTextSubjectivity)
+df3['Polarity'] = df3['text'].apply(getTextPolarity)
+
+
+#creates another column called Score and applies the function to the dataframe
+df3['Score'] = df3['Polarity'].apply(getTextAnalysis)
+
+#visualizes the data through a bar chart
+labels = df3.groupby('Score').count().index.values
+values = df3.groupby('Score').size().values
+plt.bar(labels, values, color = ['red', 'blue', 'lime'])
+plt.title(label = "Vaccine Sentiment Analysis - 12/28/2020", 
+                  fontsize = '15')
+
+#calculates percentage of positive, negative, and neutral tweets
+positive = df3[df3['Score'] == 'Positive']
+print(str(positive.shape[0]/(df3.shape[0])*100) + " % of positive tweets")
+positive = df3[df3['Score'] == 'Neutral']
+print(str(positive.shape[0]/(df3.shape[0])*100) + " % of neutral tweets")
+positive = df3[df3['Score'] == 'Negative']
+print(str(positive.shape[0]/(df3.shape[0])*100) + " % of negative tweets")
+
+from wordcloud import WordCloud, STOPWORDS
+
+text = ''.join([tweet for tweet in df['text']])
+WordCloud = WordCloud(width=800, height=600).generate(text)
+    
+plt.imshow(WordCloud)
+plt.show
