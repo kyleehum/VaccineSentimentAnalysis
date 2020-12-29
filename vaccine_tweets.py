@@ -5,10 +5,10 @@ from textblob import TextBlob
 import matplotlib.pyplot as plt
 
 #login credentials for twitter API
-consumer_key = "EvSt1PFSOIxLc0IgHBD5xpC5A"
-consumer_secret = "4711ElaUe6KalAEKQuUZnrG3uXtBxf4mH0IxuN8fIsTK5BDbLO"
-access_token = "1182850072565837824-SsVIUnKh7dfcFSAyBBUSh9fxUct1Bs"
-access_token_secret = "uwrlviI9gBaTJYwbg9qEciUDSJRwIRKvjsOBJ7abZodul"
+consumer_key = ""
+consumer_secret = ""
+access_token = ""
+access_token_secret = ""
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 # Setting your access token and secret
