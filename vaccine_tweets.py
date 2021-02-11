@@ -43,6 +43,10 @@ def cleanUpTweet(txt):
     txt = re.sub(r'RT : ', '', txt)
     # Remove urls
     txt = re.sub(r'https?:\/\/[A-Za-z0-9\.\/]+', '', txt)
+    #removes stop words
+    txt = re.sub(r'the', '', txt)
+    txt = re.sub(r'and', '', txt)
+    txt = re.sub(r'to', '', txt)
     return txt
 df['text'] = df['text'].apply(cleanUpTweet)
 
